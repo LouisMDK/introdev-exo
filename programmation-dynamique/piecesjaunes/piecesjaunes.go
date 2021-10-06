@@ -21,6 +21,23 @@ La fonction meilleurDecomposition doit trouver la meilleur décomposition d'une 
 meilleurDecomposition(15, []int{7, 8, 9}) = [8 7]
 meilleurDecomposition(15, []int{2, 4, 6}) = errImpossible
 */
+
 func meilleurDecomposition(somme int, valeursPieces []int) (pieces []int, err error) {
+
+
+	decompositions := make(map[int][]int)
+	pieces, err = do(decompositions, somme, valeursPieces)
+	return pieces, err
+}
+
+func do(decompo map[int][]int, somme int, valeursPieces []int) (pieces []int, err error){
+
+	val, e := decompo[somme]
+	if !e {
+		return decompo[somme], err
+	}
+	// faire décomposition
+
+
 	return pieces, err
 }

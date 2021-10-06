@@ -19,5 +19,30 @@ retournera -1)
 racaman(4) = 2
 */
 func racaman(n int) (an int) {
-	return an
+	var valeurs []int
+	var point *[]int = &valeurs
+	return sequence(n, point)
+}
+func sequence(n int, vals *[]int) (int){
+	if n == 1 {
+		return 1
+	}
+	if n < 1 {
+		return -1
+	}
+	var next int
+	next = sequence(n - 1, vals) - n
+	liste := *vals
+	for i := 0; i < len(liste); i++ {
+
+		if liste[i] == next{ // next a déjà été vu
+			return sequence(n - 1, vals) + n
+		}
+	}
+
+	if next > 0 {
+		*vals = append(*vals, next)
+		return next
+	}
+	return sequence(n - 1, vals) + n
 }
