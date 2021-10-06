@@ -15,5 +15,18 @@ package classement
 classer([]int{99, 100, 101}) = [100], [99], [101]
 */
 func classer(t []int) (pairs, petits, grands []int) {
+	for _, val := range t {
+		if val % 2 == 0 {
+			pairs = append(pairs, val)
+		}else{
+			
+
+			if val < 100 {
+				petits = append(petits, val)
+			}else{
+				grands = append(grands, val) 
+			}
+		}
+	}
 	return pairs, petits, grands
 }

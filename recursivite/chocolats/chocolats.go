@@ -15,10 +15,6 @@ La fonction miam doit répondre (de manière récursive) à cette question.
 # Exemple
 */
 func miam(n, m, k uint) (choco uint) {
-	if n < m{
-		return 0
-	}
-	choco = (n - (n % m)) / m
-	bonus := (choco - (choco % k)) / k
-	return choco + miam(bonus * m, m, k) 
+
+	return choco
 }
