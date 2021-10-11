@@ -20,34 +20,63 @@ racaman(4) = 2
 */
 
 var liste []int
-
 func racaman(n int) (an int) {
 	liste = nil
 	if n <= 0 {
 		return -1
 	}
-	return sequence(n)
+	val := sequence(n)
+	fmt.Println(liste)
+	return val
 }
 
 func sequence(n int) (an int) {
-	fmt.Println(liste)
 	if n == 1 {
 		return 1
 	}
 	var val int
-	if contient(liste, n) && n > 0 {
-		val = sequence(n-1) - n
+	val = sequence(n-1) - n
+	if val > 0 && !contient(liste, val) {
 		liste = append(liste, val)
 		return val
 	}
 	val = sequence(n-1) + n
-		liste = append(liste, val)
+	return val
+}
+/*
+func sequence(n int) (an int) {
+	if n == 1 {
+		return 1
+	}
+	var val int 
+	val = sequence(n-1) - n
+	if val > 0 && !dejaVu(val) {
 		return val
+	}
+	return sequence(n-1) + n
 }
 
-func contient(l []int, v int) (bool) {
-	for _, val := range l {
-		if val == v {
+func sequenceVals(n int, tab []int) (vus []int) {
+	if n == 1 {
+		tab = append(tab, 1)
+		return tab
+	}
+
+	var val int
+	var liste []int
+	liste = sequenceVals(n-1, tab)
+	val = liste[len(liste) - 1] - n
+	if !contient(tab, val) && val > 0 {
+		tab = append(tab, val)
+		return tab
+	}
+	tab = append(tab, liste[len(liste)-1] + n)
+	return tab
+}
+*/
+func contient(liste []int, val int) (bool) {
+	for _, valeur := range liste {
+		if valeur == val {
 			return true
 		}
 	}

@@ -14,5 +14,14 @@ Une chaine sc est une sous chaine d'une chaine s si on peut reconstruire s en ra
 sousChaine("abcde", "ace") = true
 */
 func sousChaine(s, sc string) (b bool) {
-	return b
+	if sc == "" {
+		return true
+	}
+	if s == "" {
+		return false
+	}
+	if s[0] == sc[0] {
+		return sousChaine(s[1:], sc[1:])
+	}
+	return sousChaine(s[1:], sc)
 }

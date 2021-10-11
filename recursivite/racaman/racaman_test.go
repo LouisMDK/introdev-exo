@@ -2,6 +2,7 @@ package racaman
 
 import (
 	"testing"
+	"fmt"
 )
 func TestErreur1(t *testing.T) {
 	if racaman(0) != -1 {
@@ -46,6 +47,7 @@ func TestValeur5(t *testing.T) {
 }
 
 func TestValeur6(t *testing.T) {
+	fmt.Println(racaman(6))
 	if racaman(6) != 13 {
 		t.Fail()
 	}
