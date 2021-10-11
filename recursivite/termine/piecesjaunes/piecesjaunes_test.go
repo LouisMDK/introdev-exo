@@ -1,6 +1,8 @@
 package piecesjaunes
 
-import "testing"
+import (
+	"testing"
+)
 
 func TestVide(t *testing.T) {
 	_, err := meilleurDecomposition(1, []int{})
