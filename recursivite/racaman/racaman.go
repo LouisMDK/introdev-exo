@@ -1,5 +1,5 @@
 package racaman
-
+import "fmt"
 /*
 La suite de Racaman est définie par a(1) = 1, puis pour n > 1 par :
 - a(n-1) - n si ce nombre est strictement supérieur à 0 et n'a encore jamais été
@@ -18,31 +18,38 @@ retournera -1)
 # Exemple
 racaman(4) = 2
 */
+
+var liste []int
+
 func racaman(n int) (an int) {
-	var valeurs []int
-	var point *[]int = &valeurs
-	return sequence(n, point)
+	liste = nil
+	if n <= 0 {
+		return -1
+	}
+	return sequence(n)
 }
-func sequence(n int, vals *[]int) (int){
+
+func sequence(n int) (an int) {
+	fmt.Println(liste)
 	if n == 1 {
 		return 1
 	}
-	if n < 1 {
-		return -1
+	var val int
+	if contient(liste, n) && n > 0 {
+		val = sequence(n-1) - n
+		liste = append(liste, val)
+		return val
 	}
-	var next int
-	next = sequence(n - 1, vals) - n
-	liste := *vals
-	for i := 0; i < len(liste); i++ {
+	val = sequence(n-1) + n
+		liste = append(liste, val)
+		return val
+}
 
-		if liste[i] == next{ // next a déjà été vu
-			return sequence(n - 1, vals) + n
+func contient(l []int, v int) (bool) {
+	for _, val := range l {
+		if val == v {
+			return true
 		}
 	}
-
-	if next > 0 {
-		*vals = append(*vals, next)
-		return next
-	}
-	return sequence(n - 1, vals) + n
+	return false
 }
