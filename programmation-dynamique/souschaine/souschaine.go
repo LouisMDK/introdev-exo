@@ -16,12 +16,13 @@ Un algorithme a été vu en cours pour calculer la longueur de plus longues sous
 sousChaine("bonjour", "bonsoir") = bonor
 */
 var souschaines [][]int
+var souschainestexte [][]string
 
-func sousChaine(s1, s2 string) (s string) {
+func sousChaine(s1, s2 string) (string) {
 
 
 	souschaines = make([][]int, len(s1) + 1)
-	for i:=0; i<len(souschaine); i++{
+	for i:=0; i<len(souschaines); i++{
 		souschaines[i] = make([]int, len(s2) + 1)
 
 		for j := 0; j < len(souschaines[i]); j++ {
@@ -37,13 +38,14 @@ func sousChaine(s1, s2 string) (s string) {
 	return plusLongueSousChaine(s1, s2)
 }
 
-func plusLongueSousChaine(s1, s2 string) (s string){
+func plusLongueSousChaine(s1, s2 string) (int){
 
 	if souschaines[len(s1)][len(s2)] < 0 {
-		if s1[len(s1)-1] == s2[len(s2)-1] {
+		if s1[len(s1) - 1] == s2[len(s2) - 1]{
+			souschaines[len(s1)][len(s2)] = 1 + plusLongueSousChaine(s1[:len(s1) - 1], s2[:len(s2) - 1])
 
 		}else{
-		
+			souschaines[len(s1)][len(s2)] = max(plusLongueSousChaine(s1[:len(s1)], s2[:len(s2) - 1]), plusLongueSousChaine(s1[:len(s1) - 1], s2[:len(s2)]))
 		}
 	}
 	
@@ -51,7 +53,7 @@ func plusLongueSousChaine(s1, s2 string) (s string){
 
 }
 
-func max(n, m) {
+func max(n, m int) (int){
 	if n > m {
 		return n
 	}

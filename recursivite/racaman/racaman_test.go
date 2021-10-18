@@ -41,6 +41,7 @@ func TestValeur4(t *testing.T) {
 }
 
 func TestValeur5(t *testing.T) {
+	fmt.Println(racaman(5))
 	if racaman(5) != 7 {
 		t.Fail()
 	}
