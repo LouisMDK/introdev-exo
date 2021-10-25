@@ -12,4 +12,6 @@ x == 20 après cet appel. Cette fonction n'a donc pas de sorties.
 2021-2022, test 1, exercice 1
 */
 
-func double(x *int) {}
+func double(x *int) {
+	*x = 2 * (*x)
+}

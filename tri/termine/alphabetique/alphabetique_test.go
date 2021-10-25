@@ -1,6 +1,8 @@
 package alphabetique
 
-import "testing"
+import (
+	"testing"
+)
 
 func TestVide1(t *testing.T) {
 	dico := make([]string, 0)
