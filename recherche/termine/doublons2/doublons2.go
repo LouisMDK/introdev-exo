@@ -20,5 +20,21 @@ fois chaque entier entre 1 et len(tab) et false sinon
 */
 
 func doublons(tab []int) (ok bool) {
-	return ok
+	if len(tab) == 0 || tab == nil {
+		return true
+	}
+	for i := 1; i <= len(tab); i++ {
+
+		var count int
+		for j := 0; j < len(tab); j++ {
+			if tab[j] == i {
+				count++
+			} 
+		}
+		if count != 1 {
+			return false
+		}
+	}
+
+	return true
 }

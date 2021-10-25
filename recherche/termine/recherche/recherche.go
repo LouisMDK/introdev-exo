@@ -17,5 +17,13 @@ tab. Si la valeur v n'est pas présente, il faut l'indiquer en retournant false.
 */
 
 func recherche(tab []int, v int) (trouve bool, pos int) {
+	if len(tab) == 0 || tab == nil {
+		return false, -1
+	}
+	for i := 0; i < len(tab); i++ {
+		if tab[i] == v {
+			return true, i
+		}
+	}
 	return trouve, pos
 }
