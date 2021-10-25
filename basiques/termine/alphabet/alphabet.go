@@ -24,5 +24,29 @@ de m1 est avant le j-ième caractère de m2 dans l'alphabet.
 */
 
 func alphabet(m1, m2 string) (m1avantm2 bool) {
-	return m1avantm2
+	if m2 == "" {
+		return false
+	}
+	if m1 == "" {
+		return true
+	}
+	var length = min(len(m1), len(m2))
+	for z := 0; z < length; z++ {
+
+		if m1[z] > m2[z] {
+			return false
+		}
+		if m1[z] < m2[z] {
+			return true
+		}
+	}
+	return len(m1) < len(m2)
+}
+
+
+func min(a, b int) (int) {
+	if a > b{
+		return b
+	}
+	return a
 }

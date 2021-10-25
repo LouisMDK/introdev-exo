@@ -14,5 +14,5 @@ La fonction calcul doit retourner la valeur de son argument multipli√©e par 3, √
 */
 
 func calcul(x int) (res int) {
-	return res
+	return 3 * x + 5
 }
