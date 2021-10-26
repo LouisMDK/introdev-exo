@@ -28,11 +28,17 @@ func TestFaux(t *testing.T) {
 
 // Ajouté après le premier test machine 2021-2022
 
-func TestVrai(t *testing.T) {
+func TestVrai1(t *testing.T) {
 	// Quelques étudiants pensaient que quand un motif potentiel avait été trouvé
 	// c'était forcément ce motif qui se répétait : ici "la" se répète au début,
 	// mais le mot n'est pas une puissance de "la", c'est une puissance de "lalali"
 	if !puissant("lalalilalali") {
+		t.Fail()
+	}
+}
+
+func TestVrai2(t *testing.T) {
+	if !puissant("bb") {
 		t.Fail()
 	}
 }

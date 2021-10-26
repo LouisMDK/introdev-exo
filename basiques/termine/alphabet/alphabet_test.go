@@ -31,3 +31,17 @@ func TestEgal(t *testing.T) {
 		t.Error("Le mot \"bonjour\" n'est pas avant le mot \"bonjour\" dans l'ordre alphabétique")
 	}
 }
+
+// Ajoutés après le premier test machine 2021-2022
+
+func TestLongueur1(t *testing.T) {
+	if !alphabet("bon", "bonjour") {
+		t.Fail()
+	}
+}
+
+func TestLongueur2(t *testing.T) {
+	if alphabet("bonjour", "bon") {
+		t.Fail()
+	}
+}
