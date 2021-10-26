@@ -16,5 +16,9 @@ entiers de 1 à len(tab)/k
 */
 
 func doublons(tab []int) (k int, ok bool) {
-	return k, ok
+
+	if len(tab) == 0 || tab == nil {
+		return 0, true
+	}
+
 }

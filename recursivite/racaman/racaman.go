@@ -22,27 +22,29 @@ racaman(4) = 2
 var liste []int
 func racaman(n int) (an int) {
 	liste = nil
-	if n < 1 {
-		return -1
-	}
 	return sequence(n)
 }
 
 func sequence(n int) (int) {
-	fmt.Println(liste, n)
 	if n == 1 {
 		return 1
 	}
-	var val int = sequence(n - 1) - n
+	if n < 1 {
+		return -1
+	}
+
+	var val int = sequence(n-1) - n
 	if val > 0 && !contient(liste, val) {
 		liste = append(liste, val)
 		return val
 	}
-	val = sequence(n - 1) + n
+
+	val = sequence(n-1) + n
+	liste = append(liste, val)
 	return val
 }
 
-func contient(l []int, v int) (bool) {
+func contient(l []int, v int) (bool){
 	for i := 0; i < len(l); i++ {
 		if l[i] == v {
 			return true
