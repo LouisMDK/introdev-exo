@@ -37,6 +37,15 @@ func sousEnsembles(E []int) (PE [][]int, err error) {
 	return PE, nil
 }
 
+func generer(E []int) (PE [][]int) {
+	if len(E) == 1 {
+		return [][]int{E}
+	}
+
+	
+	return PE
+}
+
 func verifier(E []int) (bool) {
 	var vus map[int]int = map[int]int{}
 	for i := 0; i<len(E); i++ {
@@ -55,11 +64,4 @@ func verifier(E []int) (bool) {
 	return true
 }
 
-func generer(E []int) (PE [][]int) {
-	if len(E) == 1 {
-		return [][]int{E}
-	}
 
-	
-	return PE
-}

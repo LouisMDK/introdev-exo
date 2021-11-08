@@ -23,11 +23,31 @@ meilleurDecomposition(15, []int{2, 4, 6}) = errImpossible
 */
 
 
-
+var seen map[int]int = map[int]int{}
 func meilleurDecomposition(somme int, valeursPieces []int) (pieces []int, err error) {
 
+	// Pas de pièces
+	if len(valeursPieces) == 0 {
+		if somme != 0 {
+			return pieces, errImpossible
+		}
+		return []int{}, nil
+	}
+
+	// Somme nulle
+	if somme == 0 {
+		return []int{}, nil
+	}
 
 
+	for i := 0; i < len(valeursPieces); i++ {
+
+		v, exists = seen[somme - valeursPieces[i]]
+		if exists {
+			
+		}
+	}
 	return pieces, err
 }
+
 

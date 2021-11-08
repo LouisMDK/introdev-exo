@@ -1,5 +1,5 @@
 package huitreines
-import "fmt"
+
 /*
 Le problème des huit reines consiste à placer, sur un échiquier (un tableau de 8 cases par 8 cases), 8 reines, de telle sorte qu'aucune d'entre-elles ne soit en position d'en manger une autre (c'est à dire de telle sorte qu'il n'y ait pas deux reines sur la même ligne, la même colonne ou la même diagonale de l'échiquier).
 
@@ -38,13 +38,18 @@ func huitreines(n int) (plateau [][]int, ok bool) {
 func a(plateau [][]int) ([][]int){
 	var l int = premiereLigneSansReine(plateau)
 	for i:=0 ; i < len(plateau); i++ {
-
+		plateau[l][i] = 1
+		if estMange(plateau, l, i) {
+			plateau[l][i] = 0
+		}else{
+			
+		}
 	}
 
 
 	return plateau
 }
-func estMange(plateau [][]int, x, y) (bool) {
+func estMange(plateau [][]int, x, y int) (bool) {
 	for i:=0; i<len(plateau); i++ {
 		if plateau[x][i] == 1 && i != y{
 			return false
