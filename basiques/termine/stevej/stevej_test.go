@@ -83,8 +83,6 @@ func TestDate2(t *testing.T) {
 }
 
 func TestDate3(t *testing.T) {
-	e, _ := ecart(24, 5, 1955)
-	print(e)
 	if e, _ := ecart(24, 5, 1955); e != 89 {
 		t.Fail()
 	}
