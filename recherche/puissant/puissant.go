@@ -25,5 +25,50 @@ plus efficace que celle du prof.
 */
 
 func puissant(mot string) (estPuissant bool) {
+	if len(mot) == 0 {
+		return true
+	}
+	var motif []byte
+	for i := 0; i < len(mot); i++{
+		motif = append(motif, mot[i])
+		if estMotif(motif, mot){
+			return true
+		}
+	}
 	return estPuissant
+}
+
+
+func estMotif(motif []byte, mot string) (bool) {
+	var i int
+	for {
+		if i >= len(mot){
+			break
+		}
+		for j := 0; j < len(motif); j++ {
+			if i+j > len(mot) - 1{
+				return false
+			}
+			if mot[i+j] != motif[j] {
+				return false
+			}
+		}
+		i += len(motif)
+	}
+
+	
+	if len(motif) == len(mot){
+		var same bool = true
+		for i:=0;i<len(motif);i++{
+			if motif[i] != mot[i] {
+				same = false
+				break
+			}
+		}
+		if same{
+			return false
+		}
+	}
+	return true
+
 }
