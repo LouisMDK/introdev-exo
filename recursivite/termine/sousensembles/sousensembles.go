@@ -21,9 +21,7 @@ La fonction sousEnsembles doit mettre en œuvre cette construction.
 sousEnsembles([]int{1, 2}) = [[] [1] [2] [1 2]] (l'ordre des ensembles et les ordres des valeurs dans les ensembles n'ont pas d'importance)
 */
 
-var ensembles [][]int
 func sousEnsembles(E []int) (PE [][]int, err error) {
-	ensembles = [][]int{}
 	if E == nil {
 		return PE, errPasEnsemble
 	}
@@ -33,17 +31,21 @@ func sousEnsembles(E []int) (PE [][]int, err error) {
 	if !verifier(E) {
 		return PE, errPasEnsemble
 	}
-	PE = generer(E)
-	return PE, nil
-}
+	PE = append(PE, []int{})
+	for i := 0; i < len(E); i++ {
 
-func generer(E []int) (PE [][]int) {
-	if len(E) == 1 {
-		return [][]int{E}
+		var end int = len(PE)
+
+		for j := 0; j < end; j++ {
+
+			var other []int = make([]int, len(PE[j]))
+			copy(other, PE[j])
+			other = append(other, E[i])
+			PE = append(PE, other)
+		}
+
 	}
-
-	
-	return PE
+	return PE, nil
 }
 
 func verifier(E []int) (bool) {

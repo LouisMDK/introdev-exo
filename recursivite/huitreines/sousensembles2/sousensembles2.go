@@ -22,25 +22,56 @@ La fonction sousEnsembles doit mettre en œuvre cette construction pour construi
 sousEnsembles([]int{1, 2}, 1) = [[1] [2]] (l'ordre des ensembles et les ordres des valeurs dans les ensembles n'ont pas d'importance)
 */
 func sousEnsembles(E []int, k int) (PE [][]int, err error) {
-	if !estEnsemble(E){
+	if E == nil {
 		return PE, errPasEnsemble
 	}
-	return PE, err
-}
-
-func estEnsemble(E []int) (bool){
-	if E == nil {
-		return false
+	if k == 0 {
+		return [][]int{[]int{}}, nil
+	}
+	if k != 0 && len(E) < k {
+		return [][]int{}, nil
 	}
 
-	for i := 0; i < len(E); i++{
-		for j := 0; j < len(E); j++{
-			if i != j && E[i] == E[j]{
+	if !verifier(E) {
+		return PE, errPasEnsemble
+	}
+	PE = append(PE, []int{})
+	var res [][]int
+	var taille int = len(PE)
+	for i := 0; i < len(E); i++ {
+
+		for j := 0; j < taille; j++ {
+
+			var other []int = make([]int, len(PE[j]))
+			copy(other, PE[j])
+			other = append(other, E[i])
+			PE = append(PE, other)
+			if len(other) == k {
+				res = append(res, other)
+			}
+		}
+		taille++
+	
+
+	}
+	return res, nil
+}
+	
+	func verifier(E []int) (bool) {
+		var vus map[int]int = map[int]int{}
+		for i := 0; i<len(E); i++ {
+			_, exists := vus[E[i]]
+			if exists {
+				vus[E[i]] += 1
+			}else{
+				vus[E[i]] = 1
+			}
+		}
+		for _, val := range vus {
+			if val != 1 {
 				return false
 			}
 		}
+		return true
 	}
-
-
-	return true
-}
+	
