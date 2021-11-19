@@ -14,5 +14,14 @@ false sinon
 */
 
 func doublons(tab []int) (ok bool) {
-	return ok
+	var vus map[int]int = make(map[int]int)
+
+	for i := 0; i < len(tab); i++{
+		b, _ := vus[tab[i]]
+		vus[tab[i]] = b + 1
+		if b + 1 > 1 {
+			return false
+		}
+	}
+	return true
 }
