@@ -1,9 +1,6 @@
 package chiffres
 
-import (
-	"testing"
-	"fmt"
-)
+import "testing"
 
 func Test0(t *testing.T) {
 	res := chiffres(0)
@@ -20,9 +17,12 @@ func TestPetit(t *testing.T) {
 }
 
 func TestGrand(t *testing.T) {
-	fmt.Println(chiffres(1001))
 	res := chiffres(10)
 	if res != 405071317 {
 		t.Error("chiffres(10) devrait retourner 405071317 mais retourne ", res)
 	}
+}
+
+func TestTresGrand(t *testing.T) {
+	chiffres(10000)
 }

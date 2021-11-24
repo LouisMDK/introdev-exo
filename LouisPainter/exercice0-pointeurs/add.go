@@ -10,11 +10,9 @@ données en paramètres, sans modifier ces valeurs.
 
 # Sortie
 - sum : la somme des valeurs situées aux adresses ax et ay
-
-# Info
-2021-2022, test2, exercice 0
 */
 
 func addptr(ax, ay *int) (sum int) {
+	sum = *ax + *ay
 	return sum
 }

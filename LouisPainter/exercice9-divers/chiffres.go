@@ -1,7 +1,5 @@
 package chiffres
-import (
-	"strconv"
-)
+import strconv
 /*
 1^1 + 2^2 + 3^3 + ... + 10^10 = 10405071317
 Les 10 derniers chiffres de ce nombre sont 0405071317, qu'on représentera par
@@ -20,11 +18,30 @@ rapportera plus de points
 - c : l'entier représentant les 10 derniers chiffres de 1^1 + 2^2 + ... + n^n
 
 Inspiré du problème 48 de projecteuler.net
-
-# Info
-2021-2022, test2, exercice 9
 */
 
 func chiffres(n int) (c int) {
-	return c
+	return aux(0, n, -1)
+}
+
+func aux(start, end, n int) int {
+	if start > end{
+		var s string = strconv.Itoa(n)
+		print(s)
+		if len(s) > 10 {
+			s = s[:10]
+		}
+		s = strconv.Atoi(s)
+		return s
+	}
+	n += puissance(start)
+	return aux(start+1, end, n)
+}
+
+func puissance(n int) (res int) {
+	res = 1
+	for i := 0; i < n; i++ {
+		res *= n
+	}
+	return res
 }

@@ -17,11 +17,25 @@ répondre la fonction egalite.
 # Sortie
 - egaux : un booléen qui vaut true si t1 et t2 représentent le même ensemble et
           qui vaut false sinon
-
-# Info
-2021-2022, test2, exercice 3
 */
-
 func egalite(t1, t2 []int) (egaux bool) {
-	return egaux
+	var seen1 map[int]int = make(map[int]int) 
+	var seen2 map[int]int = make(map[int]int)
+	var val int
+	var exists bool
+	for i := 0; i < len(t1); i++ {
+		val, _ = seen1[t1[i]]
+		seen1[t1[i]] = val + 1
+	}
+	for j := 0; j < len(t2); j++ {
+		val, _ = seen2[t2[j]]
+		seen2[t2[j]] = val + 1
+	}
+	for i, k := range seen1 {
+		val, exists = seen2[i]
+		if !exists || val != k{
+			return false
+		}	
+	}
+	return true
 }
