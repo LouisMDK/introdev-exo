@@ -18,6 +18,7 @@ sousChaine("bonjour", "bonsoir") = bonor
 var souschaines [][]int
 var souschainestexte [][]string
 
+
 func sousChaine(s1, s2 string) (string) {
 
 

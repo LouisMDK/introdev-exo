@@ -29,22 +29,24 @@ func huitreines(n int) (plateau [][]int, ok bool) {
 	for i, _ := range plat{
 		plat[i] = make([]int, n, n)
 	}
-	
-	plateau = a(plat)
-
+	plat = a(plat)
 	return plateau, ok
 }
 
-func a(plateau [][]int) ([][]int){
+func a(plateau [][]int) ([][]int) [][]int{
 	var l int = premiereLigneSansReine(plateau)
+	if l == -1 {
+		return plateau
+	}
 	for i:=0 ; i < len(plateau); i++ {
-		plateau[l][i] = 1
-		if estMange(plateau, l, i) {
-			plateau[l][i] = 0
-		}else{
-			
+		var [][]int plt 
+		copy(plt, plateau)
+		plt[l][i] = 1
+		if !estMange(plt, l, i) {
+			return a(plt)
 		}
 	}
+	return [][]int{{-1}}
 
 
 	return plateau
