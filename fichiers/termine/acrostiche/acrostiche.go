@@ -2,7 +2,6 @@ package acrostiche
 import (
         "os"
         "bufio"
-        "fmt"
         "log"
 )
 /*
@@ -32,15 +31,14 @@ func acrostiche(fName string) (mot string) {
 	var scanner *bufio.Scanner
 	scanner = bufio.NewScanner(myFile)
 	// Lecture des lignes du fichier
-        var lettre string
+    var ligne string
 	for scanner.Scan() {
-                lettre = scanner.Text()
-                if lettre != " " {
-                        mot = mot + lettre[0].String()   
-                }
+        ligne = scanner.Text()
+        if len(ligne) > 0 {
+            mot += string(ligne[0])
+        }
                 
 	}
-
 	// Vérification que tout s'est bien passé
 	if scanner.Err() != nil {
 		log.Fatal(scanner.Err())
