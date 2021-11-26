@@ -24,5 +24,16 @@ fonction qui n'est pas récursive ne rapportera pas de points.
 */
 
 func syracuse(n, u0 uint) (un uint) {
-	return un
+	return aux(0, n, u0)
 }
+
+func aux(start, end, u uint) uint {
+	if start == end {
+		return u
+	}
+	if u % 2 == 0 {
+		return aux(start+1, end, u / 2)
+	}
+	return aux(start+1, end, 3*u + 1)
+} 
+

@@ -1,4 +1,5 @@
 package tri
+
 /*
 La fonction tri doit trier un tableau d'entiers du plus petit au plus grand.
 Cette fonction ne doit pas modifier le tableau donné en entrée.
@@ -9,12 +10,14 @@ Cette fonction ne doit pas modifier le tableau donné en entrée.
 # Sortie
 - tfin : un tableau contenant les mêmes entiers que tinit mais triés du plus
          petit au plus grand.
+
+# Info
+2021-2022, test2, exercice 6
 */
 
 func tri(tinit []int) (tfin []int) {
-	for i := 0; i < len(tinit); i++ {
-		tfin = append(tfin, tinit[i])
-	}
+	tfin = make([]int, len(tinit))
+	copy(tfin, tinit)
 	triRapide(tfin, 0, len(tfin))
 	return tfin
 }

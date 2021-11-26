@@ -16,5 +16,16 @@ La fonction pgcd doit implanter cet algorithme simple de manière récursive.
 */
 
 func pgcd(a, b uint) (c uint) {
-	return c
+	if a == b {
+		return 1
+	}
+	if a > b && b > 0 {
+		var r uint = a % b
+		return pgcd(b, r)
+	}
+	if b > 0 {
+		return pgcd(b, a)
+	}
+	return a
+	
 }

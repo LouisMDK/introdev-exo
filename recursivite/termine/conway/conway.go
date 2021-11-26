@@ -30,5 +30,27 @@ rapportera pas de points.
 */
 
 func conway(n int) (un []int) {
-	return un
+	return aux(0, n, []int{1})
+}
+
+func aux(start, end int, n []int) (un []int) {
+  if start == end {
+    return n
+  }
+  
+  var occ int = 0
+  var chiffre int = n[0]
+  for i := 0; i < len(n); i++ {
+    if n[i] != chiffre {
+      un = append(un, occ)
+      un = append(un, chiffre)
+      occ = 1
+      chiffre = n[i]
+    }else{
+      occ++
+    }
+  }
+  un = append(un, occ)
+  un = append(un, chiffre)
+  return aux(start+1, end, un)
 }

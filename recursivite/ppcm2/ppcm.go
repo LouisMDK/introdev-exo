@@ -25,3 +25,18 @@ nombres considérés qui soit égal à 0.
 func ppcm(tab0 []uint) (z uint) {
 	return z
 }
+
+
+func ppcm2(x, y uint) (z uint) {
+	return aux(x, y, x, y)
+}
+
+func aux(x0, y0, x, y uint) uint {
+	if x == y {
+		return x
+	}
+	if x < y {
+		return aux(x0, y0, x + x0, y)
+	}
+	return aux(x0, y0, x, y + y0)
+}
