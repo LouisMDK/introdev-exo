@@ -1,5 +1,4 @@
 package ppcm
-
 /*
 On peut calculer le ppcm de deux nombres x0 et y0, en appliquant la méthode
 récursive suivante :
@@ -23,20 +22,46 @@ nombres considérés qui soit égal à 0.
 */
 
 func ppcm(tab0 []uint) (z uint) {
+	var puissance_max map[uint]int = make(map[uint]int)
+	var b int
+	for i := 0; i < len(tab0); i++ {
+		var puissance_i map[uint]int = facteurs(tab0[i])
+
+		for key, j := range(puissance_i) {
+			b, _ = puissance_max[key]
+			if j > b {
+				puissance_max[key] = j
+			}
+		}
+	}
+
+	z = 1
+	for key, i := range(puissance_max) {
+		var sum uint = uint(key)
+		for j := 1; j < i; j++ {
+			sum *= uint(key)
+			
+		}
+		z *= sum
+	}
 	return z
 }
 
-
-func ppcm2(x, y uint) (z uint) {
-	return aux(x, y, x, y)
-}
-
-func aux(x0, y0, x, y uint) uint {
-	if x == y {
-		return x
+func facteurs(n uint) map[uint]int {
+	var res map[uint]int = make(map[uint]int)
+	var b int
+	for{
+		if n <= 1 {
+			break
+		}
+		for i:=uint(2);i<=n;i++{
+			if n % i == 0{
+				b, _ = res[i]
+				res[i] = b + 1
+				n = n / i
+				break
+			}
+		}
 	}
-	if x < y {
-		return aux(x0, y0, x + x0, y)
-	}
-	return aux(x0, y0, x, y + y0)
+	return res
 }
