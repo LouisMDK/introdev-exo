@@ -1,7 +1,4 @@
 package chiffres
-import (
-	"strconv"
-)
 /*
 1^1 + 2^2 + 3^3 + ... + 10^10 = 10405071317
 Les 10 derniers chiffres de ce nombre sont 0405071317, qu'on représentera par
@@ -26,5 +23,18 @@ Inspiré du problème 48 de projecteuler.net
 */
 
 func chiffres(n int) (c int) {
+	for i := 1; i <= n; i++ {
+		c += puissance(i, i)
+		c %= 10000000000
+	}
 	return c
+}
+
+func puissance(n, p int) (res int) {
+	res = n
+	for j := 2; j <= p; j++ {
+		res *= n
+		res %= 10000000000
+	}
+	return res
 }
