@@ -37,4 +37,10 @@ func TestLongueur(t *testing.T) {
 	if egalite([]int{1}, []int{}) {
 		t.Fail()
 	}
+	if egalite(nil, []int{1}) {
+		t.Fail()
+	}
+	if egalite([]int{1}, nil) {
+		t.Fail()
+	}
 }

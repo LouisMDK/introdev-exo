@@ -32,3 +32,15 @@ func TestTri(t *testing.T) {
 		t.Error("La fonction tri ne trie pas correctement son entrée")
 	}
 }
+
+// Ajouté après le test machine 2021-2022
+func TestTri2(t *testing.T) {
+	tinit := []int{2, -2, -1, 1, 1}
+	tfin := tri(tinit)
+	if len(tfin) != 5 {
+		t.Error("La fonction tri retourne un tableau qui n'a pas la bonne taille")
+	} else if tfin[0] != -2 || tfin[1] != -1 || tfin[2] != 1 || tfin[3] != 1 ||
+		tfin[4] != 2 {
+		t.Error("La fonction tri ne trie pas correctement son entrée")
+	}
+}
