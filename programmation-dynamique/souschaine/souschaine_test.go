@@ -1,6 +1,7 @@
 package souschaine
 
 import "testing"
+import "fmt"
 
 func Test1(t *testing.T) {
 	if sousChaine("", "") != "" {
@@ -21,6 +22,7 @@ func Test3(t *testing.T) {
 }
 
 func Test4(t *testing.T) {
+	fmt.Println(sousChaine("bonjour", "bonjour"))
 	if sousChaine("bonjour", "bonjour") != "bonjour" {
 		t.Fail()
 	}

@@ -15,48 +15,10 @@ Un algorithme a été vu en cours pour calculer la longueur de plus longues sous
 # Exemple
 sousChaine("bonjour", "bonsoir") = bonor
 */
-var souschaines [][]int
-var souschainestexte [][]string
+var souschaines [][]string
+
+func sousChaine(s1, s2 string) (res string) {
 
 
-func sousChaine(s1, s2 string) (string) {
-
-
-	souschaines = make([][]int, len(s1) + 1)
-	for i:=0; i<len(souschaines); i++{
-		souschaines[i] = make([]int, len(s2) + 1)
-
-		for j := 0; j < len(souschaines[i]); j++ {
-			if i == 0 {
-				souschaines[i][j] = 0
-			}else if j == 0 {
-				souschaines[i][j] = 0
-			}else {
-				souschaines[i][j] = -1
-			}
-		} 
-	}
-	return plusLongueSousChaine(s1, s2)
-}
-
-func plusLongueSousChaine(s1, s2 string) (int){
-
-	if souschaines[len(s1)][len(s2)] < 0 {
-		if s1[len(s1) - 1] == s2[len(s2) - 1]{
-			souschaines[len(s1)][len(s2)] = 1 + plusLongueSousChaine(s1[:len(s1) - 1], s2[:len(s2) - 1])
-
-		}else{
-			souschaines[len(s1)][len(s2)] = max(plusLongueSousChaine(s1[:len(s1)], s2[:len(s2) - 1]), plusLongueSousChaine(s1[:len(s1) - 1], s2[:len(s2)]))
-		}
-	}
-	
-	return souschaines[len(s1)][len(s2)]
-
-}
-
-func max(n, m int) (int){
-	if n > m {
-		return n
-	}
-	return m
+	return res
 }

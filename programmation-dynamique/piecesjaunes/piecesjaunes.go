@@ -1,7 +1,7 @@
 package piecesjaunes
 
 import "errors"
-
+import "fmt"
 var errImpossible error = errors.New("impossible de constituer cette somme avec ces pièces")
 
 /*
@@ -22,32 +22,22 @@ meilleurDecomposition(15, []int{7, 8, 9}) = [8 7]
 meilleurDecomposition(15, []int{2, 4, 6}) = errImpossible
 */
 
-
-var seen map[int]int = map[int]int{}
 func meilleurDecomposition(somme int, valeursPieces []int) (pieces []int, err error) {
-
-	// Pas de pièces
-	if len(valeursPieces) == 0 {
-		if somme != 0 {
-			return pieces, errImpossible
-		}
-		return []int{}, nil
-	}
-
-	// Somme nulle
-	if somme == 0 {
-		return []int{}, nil
-	}
-
-
-	for i := 0; i < len(valeursPieces); i++ {
-
-		v, exists = seen[somme - valeursPieces[i]]
-		if exists {
-			
-		}
-	}
-	return pieces, err
+	return pieces, errImpossible
 }
 
 
+func retirer(tab []int, j int) (res []int) {
+	for i := 0; i < len(tab); i++ {
+		if i != j {
+			res = append(res, tab[i])
+		}
+	}
+	return res
+}
+
+func ajout(tab []int, j int) (res []int) {
+	copy(res, tab)
+	res = append(res, j)
+	return res
+}
