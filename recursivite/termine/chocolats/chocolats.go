@@ -13,25 +13,10 @@ La fonction miam doit répondre (de manière récursive) à cette question.
 
 # Exemple
 */
+
 func miam(n, m, k uint) (choco uint) {
-
-	var barres_achetes uint = chocobarres(n, m)
-	var barres_bonus uint = chocobonus(barres_achetes, k)
-	return barres_achetes + barres_bonus
-}
-
-func chocobarres(n, m uint) (choco uint) {
-	if n < m {
-		return 0
+	if n < m*k {
+		return n / m
 	}
-	return 1 + chocobarres(n-m, m)
-}
-
-func chocobonus(barres, k uint) (choco uint) {
-	if barres < k {
-		return 0
-	}
-	var reste uint = barres % k
-	var papier uint = (barres - reste) / k
-	return papier + chocobonus(papier + reste, k)
+	return k + miam(n - m * (k - 1), m, k)
 }
