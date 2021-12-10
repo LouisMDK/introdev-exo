@@ -1,8 +1,7 @@
 package acrostiche
 import (
-        "os"
-        "bufio"
-        "log"
+	"os"
+	"bufio"
 )
 /*
 La fonction acrostiche doit reconstituer le mot formé par le premier caractère
@@ -19,34 +18,20 @@ de chaque ligne d'un fichier, en ignorant les lignes vides.
 */
 
 func acrostiche(fName string) (mot string) {
-        // Ouverture du fichier
-	var myFile *os.File
+	var cFile *os.File
 	var err error
-	myFile, err = os.Open(fName)
-	if err != nil {
-		log.Fatal(err)
-	}
 
-	// Préparation de la lecture
-	var scanner *bufio.Scanner
-	scanner = bufio.NewScanner(myFile)
-	// Lecture des lignes du fichier
-    var ligne string
-	for scanner.Scan() {
-        ligne = scanner.Text()
-        if len(ligne) > 0 {
-            mot += string(ligne[0])
-        }
-                
-	}
-	// Vérification que tout s'est bien passé
-	if scanner.Err() != nil {
-		log.Fatal(scanner.Err())
-	}
-	// Fermeture du fichier
-	err = myFile.Close()
+	cFile, err = os.Open(fName)
 	if err != nil {
-		log.Fatal(err)
+		return ""
+	}
+	var scanner *bufio.Scanner = bufio.NewScanner(cFile)
+	var ligne string
+	for scanner.Scan() {
+		ligne = scanner.Text()
+		if len(ligne) > 0 {
+			mot += string(ligne[0])
+		}
 	}
 	return mot
 }

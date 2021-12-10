@@ -1,7 +1,6 @@
 package chiffres
 
 import "testing"
-import "fmt"
 
 func Test0(t *testing.T) {
 	res := chiffres(0)
