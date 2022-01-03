@@ -25,19 +25,3 @@ meilleurDecomposition(15, []int{2, 4, 6}) = errImpossible
 func meilleurDecomposition(somme int, valeursPieces []int) (pieces []int, err error) {
 	return pieces, errImpossible
 }
-
-
-func retirer(tab []int, j int) (res []int) {
-	for i := 0; i < len(tab); i++ {
-		if i != j {
-			res = append(res, tab[i])
-		}
-	}
-	return res
-}
-
-func ajout(tab []int, j int) (res []int) {
-	copy(res, tab)
-	res = append(res, j)
-	return res
-}
