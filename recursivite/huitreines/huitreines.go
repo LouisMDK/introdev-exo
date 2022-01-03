@@ -24,54 +24,73 @@ L'objectif de cet exercice est d'écrire une fonction huitreines qui résout le 
 huitreines(4) = [[0 1 0 0] [0 0 0 1] [1 0 0 0] [0 0 1 0]] (solution non unique)
 */
 func huitreines(n int) (plateau [][]int, ok bool) {
-
-	var plat [][]int = make([][]int, n, n)
-	for i, _ := range plat{
-		plat[i] = make([]int, n, n)
+	plateau = make([][]int, n)
+	for i := 0; i < len(plateau); i++ {
+		plateau[i] = make([]int, n)
 	}
-	plat = a(plat)
+	plateau, ok = aux(plateau)
+	//fmt.Println(plateau, ok)
 	return plateau, ok
 }
 
-func a(plateau [][]int) ([][]int) [][]int{
-	var l int = premiereLigneSansReine(plateau)
+func aux(plat [][]int) (plt [][]int, ok bool) {
+	var l int = premiereLigne(plat)
 	if l == -1 {
-		return plateau
+		return plat, true
 	}
-	for i:=0 ; i < len(plateau); i++ {
-		var [][]int plt 
-		copy(plt, plateau)
-		plt[l][i] = 1
-		if !estMange(plt, l, i) {
-			return a(plt)
+	var next [][]int = make([][]int, len(plat))
+	var tmp [][]int = make([][]int, len(plat))
+
+	for i := 0; i < len(plat[l]); i++ {
+		plat[l][i] = 1
+		if estMange(plat, l, i) {
+			plat[l][i] = 0
+		} else {
+			copy(next, plat)
+			tmp, ok = aux(next)
+			if ok {
+				copy(next, tmp)
+			} else {
+				plat[l][i] = 0
+			}
 		}
 	}
-	return [][]int{{-1}}
-
-
-	return plateau
+	return next, ok
 }
-func estMange(plateau [][]int, x, y int) (bool) {
-	for i:=0; i<len(plateau); i++ {
-		if plateau[x][i] == 1 && i != y{
-			return false
+
+func estMange(plateau [][]int, l, c int) bool {
+	for ll := 0; ll < len(plateau); ll++ {
+		if ll != l {
+			if plateau[ll][c] == 1 {
+				return true
+			}
+			for cc := 0; cc < len(plateau[ll]); cc++ {
+				if plateau[ll][cc] == 1 {
+					diffL := ll - l
+					diffC := cc - c
+					if diffL == diffC || diffL == -diffC {
+						return true
+					}
+				}
+			}
 		}
 	}
-	return true
+	return false
 }
-func premiereLigneSansReine(plateau [][]int) (int){
-	var isin bool
-	for i, ligne := range plateau {
-		isin = false
-		for _, val := range ligne {
-			if val == 1 {
-				isin = true
-				break
+
+func premiereLigne(plat [][]int) int {
+	var clear bool
+	for i := 0; i < len(plat); i++ {
+		clear = true
+		for j := 0; j < len(plat[i]); j++ {
+			if plat[i][j] == 1 {
+				clear = false
 			}
-			if !isin{
-				return i
-			}
+		}
+		if clear {
+			return i
 		}
 	}
 	return -1
 }
+

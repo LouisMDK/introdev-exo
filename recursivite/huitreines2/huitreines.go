@@ -1,5 +1,5 @@
 package huitreines2
-
+import "fmt"
 /*
 Le problème des huit reines consiste à placer, sur un échiquier (un tableau de 8 cases par 8 cases), 8 reines, de telle sorte qu'aucune d'entre-elles ne soit en position d'en manger une autre (c'est à dire de telle sorte qu'il n'y ait pas deux reines sur la même ligne, la même colonne ou la même diagonale de l'échiquier).
 
@@ -24,6 +24,77 @@ huitreines(1) = [[[1]]]
 huitreines(2) = []
 */
 
+var g [][][]int
 func huitreines(n int) (plateaux [][][]int) {
-	return plateaux
+	g = [][][]int{}
+	var plateau [][]int
+	plateau = make([][]int, n)
+	for i := 0; i < len(plateau); i++ {
+		plateau[i] = make([]int, n)
+	}
+	aux(plateau)
+	fmt.Println(g)
+	return g
+}
+
+func aux(plat [][]int) (plt [][]int, ok bool) {
+	var l int = premiereLigne(plat)
+	if l == -1 {
+		g = append(g, plat)
+		return plat, true
+	}
+	var next [][]int = make([][]int, len(plat))
+	var tmp [][]int = make([][]int, len(plat))
+
+	for i := 0; i < len(plat[l]); i++ {
+		plat[l][i] = 1
+		if estMange(plat, l, i) {
+			plat[l][i] = 0
+		} else {
+			copy(next, plat)
+			tmp, ok = aux(next)
+			if ok {
+				copy(next, tmp)
+			} else {
+				plat[l][i] = 0
+			}
+		}
+	}
+	return next, ok
+}
+
+func estMange(plateau [][]int, l, c int) bool {
+	for ll := 0; ll < len(plateau); ll++ {
+		if ll != l {
+			if plateau[ll][c] == 1 {
+				return true
+			}
+			for cc := 0; cc < len(plateau[ll]); cc++ {
+				if plateau[ll][cc] == 1 {
+					diffL := ll - l
+					diffC := cc - c
+					if diffL == diffC || diffL == -diffC {
+						return true
+					}
+				}
+			}
+		}
+	}
+	return false
+}
+
+func premiereLigne(plat [][]int) int {
+	var clear bool
+	for i := 0; i < len(plat); i++ {
+		clear = true
+		for j := 0; j < len(plat[i]); j++ {
+			if plat[i][j] == 1 {
+				clear = false
+			}
+		}
+		if clear {
+			return i
+		}
+	}
+	return -1
 }
