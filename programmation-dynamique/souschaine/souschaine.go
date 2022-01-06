@@ -18,7 +18,5 @@ sousChaine("bonjour", "bonsoir") = bonor
 var souschaines [][]string
 
 func sousChaine(s1, s2 string) (res string) {
-
-
 	return res
 }
