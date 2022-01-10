@@ -15,4 +15,8 @@ La fonction modifie le tableau d'entrée et n'a donc pas de sorties.
 envers appelée sur le tableau [1 2 3] doit le transformer en [3 2 1]
 */
 
-func envers(t []int) {}
+func envers(t []int) {
+	for i := 0; i < len(t) / 2; i++ {
+		t[i], t[len(t) - i - 1] = t[len(t) - i - 1], t[i]
+	}
+}

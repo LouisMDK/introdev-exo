@@ -19,5 +19,19 @@ de tab et du nombre de fois où v apparaît dans la deuxième moité de tab.
 */
 
 func compte(tab []int, v int) (num int) {
-	return num
+	if len(tab) == 0 || tab == nil {
+		return 0
+	}
+	if len(tab) == 1 {
+		if tab[0] == v {
+			return 1
+		}
+		return 0
+	}
+
+	var q int = len(tab) / 2
+	var gauche int = compte(tab[0:q], v)
+	var droite int = compte(tab[q:len(tab)], v)
+
+	return gauche + droite
 }

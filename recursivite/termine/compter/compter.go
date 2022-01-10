@@ -1,5 +1,7 @@
 package compter
 
+import "fmt"
+
 /*
 La fonction compter(n, m) doit retourner une chaîne de caractère qui liste tous
 les entiers dans l'ordre croissant de n à m puis dans l'ordre décroissant de m
@@ -21,5 +23,25 @@ compter(2, 5) = "2+3+4+5+4+3+2"
 */
 
 func compter(n, m uint) (s string) {
-	return s
+	if n > m {
+		return ""
+	}
+	if n == m {
+		return fmt.Sprint(m)
+	}
+	return croissant(n, m, n, "")
+}
+
+func croissant(n, m, og uint, s string) string {
+	if n > m {
+		return decroissant(n-2, og, s)
+	}
+	return croissant(n+1, m, og, s + fmt.Sprint(n) + "+")
+}
+
+func decroissant(n, m uint, s string) string {
+	if n <= m {
+		return s + fmt.Sprint(n)
+	}
+	return decroissant(n -1, m, s + fmt.Sprint(n) + "+")
 }

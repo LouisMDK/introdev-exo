@@ -19,5 +19,16 @@ deuxième moitié de tab.
 */
 
 func recherche(tab []int, v int) (existe bool) {
-	return existe
+	if len(tab) == 0 || tab == nil {
+		return false
+	}
+	if len(tab) == 1 {
+		return tab[0] == v
+	}
+
+	var q int = len(tab) / 2
+	var gauche bool = recherche(tab[0:q], v)
+	var droite bool = recherche(tab[q:len(tab)], v)
+
+	return gauche || droite
 }
